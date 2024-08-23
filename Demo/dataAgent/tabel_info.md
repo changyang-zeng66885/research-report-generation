@@ -86,7 +86,7 @@
 + IronOreInventory_Total 铁矿石库存：全球(记录日期范围：2014.1.3-2023.12.9 每隔一周记录一次)
   + Date	
   + Quantity
-+ Sypply_IronOre 铁矿石供给发运量(单位：万吨)（记录日期范围：2020.10.16-2023.11.20）
++ Supply_IronOre 铁矿石供给发运量(单位：万吨)（记录日期范围：2020.10.16-2023.11.20）
   + date 日期
   + global_shipments_week: 全球发货量
   + australia_brazil_shipments_week: 澳洲和巴西铁矿石发货量
@@ -139,3 +139,7 @@
 + Steel_Company_Profitability 钢铁企业盈利率_中国_周(记录日期范围：2019.1.4-2023.11.10)
   + IndexDate 
   + profitability_rate
+
+## 数据库说明
++ 数据库使用的是SQLite
++ 本数据库不支持 YEAR() 函数，可以使用 strftime 函数
