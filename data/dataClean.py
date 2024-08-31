@@ -3,10 +3,10 @@ import sqlite3
 from datetime import datetime
 
 # 创建 SQLite 数据库连接
-conn = sqlite3.connect('data/ironDB.db')
+conn = sqlite3.connect('ironDB.db')
 
 # 读取 Excel 文件
-excel_file = 'data/alldata/IRON_DATA.xlsx'
+excel_file = '2022/markdown/2022Event_date/event_list_2022.xlsx'
 xls = pd.ExcelFile(excel_file)
 
 # 遍历所有 Sheet

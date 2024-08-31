@@ -19,8 +19,8 @@ def read_md_files(directory,saveEventFilePath):
                 df = pd.DataFrame(result_list)
                 savePath = f'{saveEventFilePath}/{title}_event_list.xlsx'
                 df.to_excel(savePath, index=True)
-                print(f"event 已保存在 {savePath}")
-                print("-" * 30)
+                print(f"Event数据 已保存在 {savePath}")
+                print("-" * 50)
 
 def getEvents(title,text):
     event_list = []
@@ -46,10 +46,6 @@ def getEvents(title,text):
             except Exception as e:
                 print(f"获取json结果出现了错误:{e}")
             count_section += 1
-
-
-            if (count_section > 1):
-                break
     return event_list
 
     # print("数据处理完成")
