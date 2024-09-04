@@ -16,9 +16,9 @@ def generateTrendReview(reportTitle,yearMon):
     fullTrendReviewText = f"# {reportTitle}" # 完整的走势回顾文字
 
     topics=[
-        "走势回顾情况：近3个月内，普氏62%指数价格，日照港Pb粉等现货价格，合约价格、DCE01、DCE05、DCE07变化",
+        "走势回顾情况：普氏62%指数价格，日照港Pb粉等现货价格，合约价格、DCE01、DCE05、DCE07变化",
         "国际铁矿石供给情况:铁矿砂及精粉进口量、到港量变化(可以分主流矿和非主流矿)",
-        "国际铁矿石供给情况:近3年内，四大矿山(巴西的淡水河谷、澳大利亚的力拓、必和必拓和福蒂斯丘)年度年产量变动情况",
+        "国际铁矿石供给情况:四大矿山(巴西的淡水河谷、澳大利亚的力拓、必和必拓和福蒂斯丘)年度年产量变动情况",
         "国内铁矿石供给情况:国产铁矿石原矿产量",
         "国内铁矿石供给情况:矿山产能利用率"
     ] # 研报片段的分析主题
@@ -27,7 +27,7 @@ def generateTrendReview(reportTitle,yearMon):
     for topic in topics:
         print(f"正在生成主题: {topic} ...")
 
-        data_query = f" 主题为:{topic}；时间范围：{yearMon}以来，往前推3-6个月左右，的的相关数据"
+        data_query = f" 主题为:{topic}；时间范围：{yearMon}以来，往前推3-6个月左右的的相关数据"
         dataFromDataAgent,imageSavePaths = dataAgent.askDataAgent(data_query)
         events_query = f" 主题为:{topic}；时间范围为：{yearMon},往前推3=6个月左右,发生的重要的事件数据"
         eventsFromPreviousReports = dataAgent.askDataAgent(events_query)
@@ -61,8 +61,8 @@ def generateTrendReview(reportTitle,yearMon):
 if __name__ == "__main__":
     # 2022年9月、11月、12月；2023年3月、5月、6月、8月、9月
 
-    # yearMonList = ["2022年9月","2022年11月","2022年12月","2023年5月","2023年6月","2023年8月","2023年9月"]
-    yearMonList = ["2022年11月"]
+    # yearMonList = ["2022年9月","2022年12月","2023年5月","2023年6月","2023年8月","2023年9月"]
+    yearMonList = ["2023年3月"]
     for yearMon in yearMonList:
         reportTitle = f'{yearMon}月报：走势回顾与供给分析：铁矿石'
         fullTrendReviewText = generateTrendReview(reportTitle, yearMon)
