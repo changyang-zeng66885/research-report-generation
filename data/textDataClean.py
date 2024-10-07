@@ -55,7 +55,8 @@ def getEvents(title,text):
 
 def sortResearchReportToJson(title,text):
     prompt = f"""
-        你是一台从提供的研报文本中提取信息的AI系统。你的任务是整理研报中重要的事件+时间节点，并将信息转化成树状JSON列表，其中包含完整且未经修改的信息块。
+        你是一台从提供的研报文本中提取信息的AI系统。
+        你的任务是整理研报中重要的事件+时间节点，并将信息转化成树状JSON列表，其中包含完整且未经修改的信息块。
         
         这篇研报的内容是：
         标题: {title}

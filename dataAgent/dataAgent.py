@@ -1,9 +1,11 @@
 from openai import OpenAI
 import Config.config as config
 import json
-from . import sqlExecuter
+# from . import sqlExecuter
+import sqlExecuter
 import os
-from . import draw
+# from . import draw
+import draw
 
 def load_database_description(file_name):
     # 获取当前脚本文件所在目录
@@ -38,9 +40,9 @@ def generate_sql_query(user_query):
     2. 如果有需要，可以返回多条SQL语句 
     3. 如果现有数据表无法满足用户的查询需求，返回示例为：{{ "sql":"","desc":"<无法满足用户的查询需求的原因>" }}, 其中 “< >” 里的内容需要根据实际情况填写
     4. 提供按月或者按年汇总的查询SQL语句，如果不能提供，请在desc属性中给出理由
+    5. 如果查询的结果包含时间、日期等属性，请将这些属性作为第一个查询的属性，保证数据表的第一列为时间或者日期。
 
     """
-
     client = OpenAI(api_key=config.deepseek_key, base_url="https://api.deepseek.com")
     response = client.chat.completions.create(
         model="deepseek-chat",
@@ -58,8 +60,8 @@ def askDataAgent(user_query):
 
     tabels = \
     f"""
-    用户需求：{user_query}
-    查询结果：
+用户需求：{user_query}
+查询结果：
     """ # 存储查询的表格，及其描述
     tabel_count = 1
     imageSavePaths = [] # 保存分析图片的保存路径
@@ -68,10 +70,11 @@ def askDataAgent(user_query):
         if sql == "":
             continue
         desc = query['desc']
-        print(f"查找数据：{desc}  ;Executing sql： {sql};")
+        print(f"查找数据：{desc} ;\nExecuting sql： {sql};")
         try:
             table = sqlExecuter.execute_query(sql)  # 打印查询结果
             imageSavePath = draw.executeAndDrawByQuery(sql,desc) #绘制图表
+
             imageSavePaths.append(f"![{desc.replace('查询','').replace('的结果','')}]({imageSavePath})")
             tabels += f"表: {desc} \n"
             tabels += table
@@ -82,7 +85,7 @@ def askDataAgent(user_query):
 
 if __name__ == "__main__":
     # 示例用户查询
-    user_query = "2020年-2022年，国内和国外铁矿石产量的变化情况"
+    user_query = "2022年9月至2023年3月的国内铁矿石供应总量数据，以了解国内铁矿石供给情况中的矿山产能利用率"
     tabels,imageSavePaths = askDataAgent(user_query)
     print(tabels)
     for imageSavePath in imageSavePaths:
