@@ -1,11 +1,9 @@
 from openai import OpenAI
 import Config.config as config
 import json
-# from . import sqlExecuter
-import sqlExecuter
+from . import sqlExecuter
 import os
-# from . import draw
-import draw
+from . import draw
 
 def load_database_description(file_name):
     # 获取当前脚本文件所在目录
@@ -83,13 +81,13 @@ def askDataAgent(user_query):
             print(f"执行SQL出现了错误，错误原因:{e}")
     return tabels,imageSavePaths
 
-if __name__ == "__main__":
-    # 示例用户查询
-    user_query = "2022年9月至2023年3月的国内铁矿石供应总量数据，以了解国内铁矿石供给情况中的矿山产能利用率"
-    tabels,imageSavePaths = askDataAgent(user_query)
-    print(tabels)
-    for imageSavePath in imageSavePaths:
-        print(imageSavePath)
+# if __name__ == "__main__":
+#     # 示例用户查询
+#     user_query = "2022年9月至2023年3月的国内铁矿石供应总量数据，以了解国内铁矿石供给情况中的矿山产能利用率"
+#     tabels,imageSavePaths = askDataAgent(user_query)
+#     print(tabels)
+#     for imageSavePath in imageSavePaths:
+#         print(imageSavePath)
 
 
 

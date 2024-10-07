@@ -1,8 +1,9 @@
 import sqlite3
 import matplotlib.pyplot as plt
+import Config.config as config
 
 def execute_query(sql_query):
-    conn = sqlite3.connect('D:/24大语言模型工程师实训营/dataAgent/ironDB.db')
+    conn = sqlite3.connect(config.databaseDir)
     cursor = conn.cursor()
 
     # 执行SQL查询
