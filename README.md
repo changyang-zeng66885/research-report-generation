@@ -37,7 +37,11 @@ topics=[
 ```
 
 ## Kaggle比赛链接
++ 比赛链接1
 https://www.kaggle.com/competitions/research-report-generation/leaderboard
+
++ 比赛链接2
+https://www.kaggle.com/competitions/sufe-dl-24-spring-project-2/leaderboard
 
 ## 项目概述
 ![](assets/introSlides/幻灯片1.JPG)
